@@ -11,7 +11,7 @@ class Weapon:
         return self.__str__()
 
     def __hash__(self):
-        return hash(self.get_name + str(self.get_damage))
+        return hash(self.get_name() + str(self.get_damage))
 
     def get_name(self):
         return self.__name
