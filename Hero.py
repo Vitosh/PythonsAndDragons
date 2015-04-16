@@ -1,6 +1,6 @@
 class Hero:
 
-    def __init__(self, hero_name, weapons, spells, hero_title, health=100, mana=100, mana_regeneration_rate=1):
+    def __init__(self, hero_name, hero_title, weapons, spells, health=100, mana=100, mana_regeneration_rate=1):
         self.__name = hero_name
         self.__title = hero_title
         self.__health = health
