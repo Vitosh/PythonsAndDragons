@@ -1,3 +1,4 @@
+# Hero class
 class Hero:
 
     def __init__(self, hero_name, hero_title, health=100, mana=100, weapons, spells, mana_regeneration_rate=1):
