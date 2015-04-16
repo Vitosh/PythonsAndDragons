@@ -13,12 +13,6 @@ class Hero:
         self.__current_weapon = None
         self.__current_spell = None
 
-    def get_current_weapon(self):
-        return self.__current_weapon
-
-    def get_current_spell(self):
-        return self.__current_spell
-
     def get_weapons(self):
         return self.__weapons
 
@@ -99,3 +93,9 @@ class Hero:
     # This method get Weapon or Spell object
     def atack(self, by):
         return by.get_damage()
+
+    def get_current_weapon(self):
+        return self.__current_weapon
+
+    def get_current_spell(self):
+        return self.__current_spell
