@@ -82,15 +82,16 @@ class Tests(unittest.TestCase):
         self.assertEqual(human.take_healing(50), False)
 
         # if hero health = 1
-        human2 = Hero(hero_name, hero_title, weapons, spells, health=1)
+        human2 = Hero(hero_name, hero_title, weapons, spells, health=100)
+        human2.take_damage(99)
         self.assertEqual(human2.take_healing(50), 51)
 
         # if hero take healing  = -50
         human2 = Hero(hero_name, hero_title, weapons, spells, health=1)
         self.assertEqual(human2.take_healing(-50), False)
 
-    def test_is_mana_points_over100p(self):
-        test_value = self.h.is_mana_points_over_100p(200)
+    def test_is_mana_points_over_max(self):
+        test_value = self.h.is_mana_point_over_max(200)
         self.assertEqual(test_value, True)
 
         weapons = ["bow", "sword", "sword", "gun", "gun"]
@@ -98,7 +99,7 @@ class Tests(unittest.TestCase):
         hero_name = "Bron"
         hero_title = "DragonSlayer"
         human = Hero(hero_name, hero_title, weapons, spells, mana=0)
-        self.assertEqual(human.is_mana_points_over_100p(100), False)
+        self.assertEqual(human.is_mana_point_over_max(100), True)
 
     def test_regeneration(self):
         test_value = self.h.regeneration(True)
@@ -108,7 +109,7 @@ class Tests(unittest.TestCase):
         spells = ["magic1", "anateema", "magic2"]
         hero_name = "Bron"
         hero_title = "DragonSlayer"
-        human = Hero(hero_name, hero_title, weapons, spells, mana=0)
+        human = Hero(hero_name, hero_title, weapons, spells, mana=1)
         self.assertEqual(human.regeneration(True), 1)
 
     def test_equip(self):
