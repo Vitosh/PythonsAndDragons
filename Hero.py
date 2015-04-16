@@ -19,11 +19,11 @@ class Hero:
     def get_spells(self):
         return self.__spells
 
-    def get_hero_hero_name(self):
-        return self.__hero_name
+    def get_hero_name(self):
+        return self.__name
 
     def get_hero_title(self):
-        return self.__hero_title
+        return self.__title
 
     def known_as(self):
         return "{} the {}".format(self.get_hero_name(), self.get_hero_title())
@@ -38,7 +38,7 @@ class Hero:
         return self.get_health() > 0
 
     def can_cast(self):
-        return self.get_mana > 0
+        return self.get_mana() > 0
 
     def take_damage(self, damage_point):
         self.__health -= damage_point
@@ -47,7 +47,7 @@ class Hero:
     def take_healing(self, healing_points):
 
         # Hero is dead logic or Hero health  is  100%
-        if not self.is_alive() or self.get_health() == 100:
+        if not self.is_alive() or self.get_health() == 100 or not self.is_alive() or healing_points < 0:
             return False
 
         # Other cases
@@ -61,13 +61,13 @@ class Hero:
             return True
         return False
 
-    def regeneration(is_move, self):
+    def regeneration(self,is_move):
         # Hero make move => is_move = True
         if is_move:
             self.__mana += self.__mana_regeneration_rate
             # Hero's mana cannot go above the start mana given to him,
             # neither he can go down below 0 mana
-            if self.is_mana_points_over_100p(self.mana_regeneration_rate):
+            if self.is_mana_points_over_100p(self.__mana_regeneration_rate):
                 self.__mana = 100
         # valid if  is_move = True or is_move = False
         # always return mana
