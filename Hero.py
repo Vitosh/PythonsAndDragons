@@ -164,21 +164,3 @@ class Spell:
 
     def get_cast_range(self):
         return self.__cast_range
-
-
-# h = Hero(name="Bron", title="Dragonslayer", health=100,
-#          mana=100, mana_regeneration_rate=2)
-
-# print(h.known_as())
-# print(h.is_alive())
-# print(h.get_health())
-# print(h.get_mana())
-# h.take_damage(50)
-# print(h.get_health())
-# h.take_damage(100)
-# print(h.get_health())
-# print(h.is_alive())
-# h.set_mana(50)
-# h.move_hero("left")
-# h.move_hero("right")
-# print(h.get_mana())
