@@ -5,9 +5,9 @@
 
 *Аз ще направя така:*
 ```python
-class Human
-class Enemy(Human)
-class Hero(Human)
+class Unit
+class Enemy(Unit)
+class Hero(Unit)
 ```
 *Горе-долу това е. Надявам се до утре(16.04) към 5-6 часа да съм направил нещо, за да има какво да гледаме.*
 
