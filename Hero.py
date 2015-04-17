@@ -8,8 +8,27 @@ class Hero:
         self.__mana = mana
         self.__mana_regeneration_rate = mana_regeneration_rate
 
+        self.__spells = set()
+        self.__weapons = set()
+
+        self.__current_weapon = None
+        self.__current_spell = None
         self.__maximumHealth = health
         self.__maximumMana = mana
+
+    def equip(self, weapon):
+        if weapon in self.get_weapons():
+            self.__current_weapon = weapon
+
+    def learn(self, spell):
+        if spell in self.get_spells():
+            self.__current_spell = spell
+
+    def get_weapons(self):
+        return self.__weapons
+
+    def get_spells(self):
+        return self.__spells
 
     def get_name(self):
         return self.__name
@@ -24,7 +43,7 @@ class Hero:
         return self.__maximumMana
 
     def known_as(self):
-        return "{0} the {1}".format(self.get_name(), self.get_title())
+        return "{} the {}".format(self.get_name(), self.get_title())
 
     def is_alive(self):
         return bool(self.__health)
@@ -89,8 +108,66 @@ class Hero:
             print("Error in direction!")
 
 
-h = Hero(name="Bron", title="Dragonslayer", health=100,
-         mana=100, mana_regeneration_rate=2)
+class Weapon:
+
+    def __init__(self, name, damage):
+        self.__name = name
+        self.__damage = damage
+
+    def __str__(self):
+        return "{}-{}".format(self.get_name(), self.get_damage())
+
+    def __repr__(self):
+        return self.__str__()
+
+    def __hash__(self):
+        return hash(self.get_name() + str(self.get_damage))
+
+    def get_name(self):
+        return self.__name
+
+    def get_damage(self):
+        return self.__damage
+
+
+class Spell:
+
+    def __init__(self, name, damage, mana_cost, cast_range):
+        self.__name = name
+        self.__damage = damage
+        self.__mana_cost = mana_cost
+        self.__cast_range = cast_range
+
+    def __str__(self):
+        cost_str = str(self.get_mana_cost())
+        range_str = str(self.get_cast_range())
+
+        return "name: {}\ndamage: {}\ncost: {}\nrange: {}\n".format(self.get_name(), self.get_damage(), cost_str, range_str)
+
+    def __repr__(self):
+        return self.__str__()
+
+    def __hash__(self):
+        return hash(self.__str__())
+
+    def __int__(self):
+        return self.get_damage()
+
+    def get_name(self):
+        return self.__name
+
+    def get_damage(self):
+        return self.__damage
+
+    def get_mana_cost(self):
+        return self.__mana_cost
+
+    def get_cast_range(self):
+        return self.__cast_range
+
+
+# h = Hero(name="Bron", title="Dragonslayer", health=100,
+#          mana=100, mana_regeneration_rate=2)
 
 # print(h.known_as())
 # print(h.is_alive())
