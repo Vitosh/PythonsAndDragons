@@ -141,24 +141,13 @@ class Hero(Person):
 
     def atack(self, by):
         if by == "weapon" and self.get_current_weapon() != 0:
-            return self.get_current_weapon().damage()
+            return self.get_current_weapon().get_damage()
         elif by == "magic" and self.get_current_weapon != 0:
             if self.get_mana() >= self.get_current_spell().get_mana_cost():
                 self.__mana -= self.get_current_spell().get_mana_cost()
-                return self.get_current_spell().damage()
+                return self.get_current_spell().get_damage()
         else:
             return 0
-
-        if (direction == "up"):
-            pass
-        elif (direction == "down"):
-            pass
-        elif (direction == "left"):
-            pass
-        elif(direction == "right"):
-            pass
-        else:
-            print("Error in direction!")
 
 
 class Weapon:
@@ -227,6 +216,12 @@ class Enemy(Person):
         self.__weapon = 0
         self.__spell = 0
         self.__mana = super().get_mana()
+
+    def get_weapon(self):
+        return self.__weapon
+
+    def get_spell(self):
+        return self.__spell
 
     def equip(self, weapon):
         if isinstance(weapon, Weapon):
