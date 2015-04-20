@@ -120,6 +120,5 @@ class Tests(unittest.TestCase):
         self.assertEqual(e.atack("weapon"), 50)
 
 
-
 if __name__ == '__main__':
     unittest.main()

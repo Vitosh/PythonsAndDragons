@@ -59,6 +59,9 @@ class Hero(Person):
         self.__maximumMana = mana
         self.__heroSign = "H"
 
+    def __repr__(self):
+        return "{} {}".format(self.get_health(), self.get_mana())
+
     def set_weapons(self, weapon):
         self.__weapons.add(weapon)
 
@@ -216,6 +219,9 @@ class Enemy(Person):
         self.__weapon = 0
         self.__spell = 0
         self.__mana = super().get_mana()
+
+    def __repr__(self):
+        return "{} {}".format(self.get_health(), self.get_mana())
 
     def get_weapon(self):
         return self.__weapon
