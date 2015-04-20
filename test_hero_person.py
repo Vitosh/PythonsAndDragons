@@ -5,8 +5,6 @@ from hero_person_and_weapons import *
 class Tests(unittest.TestCase):
 
     def setUp(self):
-        weapons = ["bow", "sword", "sword", "gun", "gun"]
-        spells = ["magic1", "anateema", "magic2"]
         hero_name = "Bron"
         hero_title = "DragonSlayer"
         self.h = Hero(hero_name, hero_title)

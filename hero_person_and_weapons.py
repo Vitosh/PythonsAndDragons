@@ -228,25 +228,25 @@ class Enemy(Person):
         self.__spell = 0
         self.__mana = super().get_mana()
 
-        def equip(self, weapon):
-            if isinstance(weapon, Weapon):
-                self.__weapon = weapon
-            # raise ->weapon Error
+    def equip(self, weapon):
+        if isinstance(weapon, Weapon):
+            self.__weapon = weapon
+        # raise ->weapon Error
 
-        def learn(self, spell):
-            if isinstance(spell, Spell):
-                self.__spell = spell
-            # raise ->spell Error
+    def learn(self, spell):
+        if isinstance(spell, Spell):
+            self.__spell = spell
+        # raise ->spell Error
 
-        def atack(self, by=False):
-            if not by:
-                return self.__damage
-            if by == "weapon":
-                return self.__weapon.get_damage()
-            elif by == "magic" and self.__mana >= self.__spell.get_mana_cost():
-                self.__mana -= self.__spell.get_mana_cost()
-                return self.__spell.get_damage()
-            return 0
+    def atack(self, by=False):
+        if not by:
+            return self.__damage
+        if by == "weapon":
+            return self.__weapon.get_damage()
+        elif by == "magic" and self.__mana >= self.__spell.get_mana_cost():
+            self.__mana -= self.__spell.get_mana_cost()
+            return self.__spell.get_damage()
+        return 0
 
 
 # h = Hero(name="Bron", title="Dragonslayer", health=100,
