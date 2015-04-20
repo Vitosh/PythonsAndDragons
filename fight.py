@@ -23,7 +23,6 @@ class Fight:
         h.set_weapons(w)
         h.equip(w)
         e = Enemy(100, 50, 10)
-        print(e.get_health())
         f = Fight(h, e)
         print(f.hero_attack(by="weapon"))
 
