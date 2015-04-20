@@ -226,10 +226,12 @@ class Enemy(Person):
         return "health : {} , Mana :{}".format(self.get_health(), self.get_mana())
 
     def get_weapon(self):
-        return self.__weapon
+        if self.__weapon != 0:
+            return self.__weapon
 
     def get_spell(self):
-        return self.__spell
+        if self.__spell != 0:
+            return self.__spell
 
     def equip(self, weapon):
         if isinstance(weapon, Weapon):
