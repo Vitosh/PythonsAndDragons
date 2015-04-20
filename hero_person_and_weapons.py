@@ -60,7 +60,7 @@ class Hero(Person):
         self.__heroSign = "H"
 
     def __repr__(self):
-        return "{} {}".format(self.get_health(), self.get_mana())
+        return "health : {} , Mana :{}".format(self.get_health(), self.get_mana())
 
     def set_weapons(self, weapon):
         self.__weapons.add(weapon)
@@ -223,7 +223,7 @@ class Enemy(Person):
         self.__mana = super().get_mana()
 
     def __repr__(self):
-        return "{} {}".format(self.get_health(), self.get_mana())
+        return "health : {} , Mana :{}".format(self.get_health(), self.get_mana())
 
     def get_weapon(self):
         return self.__weapon
