@@ -215,6 +215,8 @@ class Enemy(Person):
 
     def __init__(self, health, mana, damage):
         super().__init__(health, mana)
+        self.__health = super().get_health()
+        self.__mana = super().get_mana()
         self.__damage = damage
         self.__weapon = 0
         self.__spell = 0

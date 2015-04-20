@@ -10,11 +10,10 @@ class Fight:
     def hero_attack(self, by):
         start_fight_message = "A fight is  started beetwen  Hero{} and Enemy".format(
             self.hero, self.enemy)
-        weapon_atack_messaages = "Enemy health is {}".format(e)
         if by == "weapon":
             self.enemy.set_health(
                 self.enemy.get_health() - self.hero.atack(by="weapon"))
-            return weapon_atack_messaages
+            return "Enemy health is {}".format(e.get_health())
             # Magic  make  latter
 
 h = Hero(name="rado", title="killer")
@@ -22,5 +21,6 @@ w = Weapon("gun", 50)
 h.set_weapons(w)
 h.equip(w)
 e = Enemy(100, 50, 10)
+print(e.get_health())
 f = Fight(h, e)
 print(f.hero_attack(by="weapon"))
