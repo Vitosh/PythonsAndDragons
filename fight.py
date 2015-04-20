@@ -27,10 +27,10 @@ class Fight:
             if self.is_enemy_dead(self.enemy):
                 print(FightMessages.ENEMY_IS_DEAD)
         # TODO : ADD range  logic
-        elif by == "magic" and self.hero.can_cast():
+        elif by == "magic" and self.hero.can_cast(self.hero.get_current_spell()):
             self.enemy_health_down("magic")
             self.hero_mana_down()
-            print(self.hero_attack_result())
+            print(self.hero_attack_result(by))
 
     def enemy_health_down(self, by):
         self.enemy.set_health(
@@ -83,6 +83,7 @@ class Fight:
         e = Enemy(100, 50, 10)
         f = Fight(h, e)
         print(f.hero_attack(by="weapon"))
+        print(f.hero_attack(by="magic"))
 
 if __name__ == '__main__':
     Fight.test()
