@@ -60,7 +60,7 @@ class Hero(Person):
         self.__heroSign = "H"
 
     def __repr__(self):
-        return "{} {}".format(self.get_health(), self.get_mana())
+        return "health : {} , Mana :{}".format(self.get_health(), self.get_mana())
 
     def set_weapons(self, weapon):
         self.__weapons.add(weapon)
@@ -215,13 +215,15 @@ class Enemy(Person):
 
     def __init__(self, health, mana, damage):
         super().__init__(health, mana)
+        self.__health = super().get_health()
+        self.__mana = super().get_mana()
         self.__damage = damage
         self.__weapon = 0
         self.__spell = 0
         self.__mana = super().get_mana()
 
     def __repr__(self):
-        return "{} {}".format(self.get_health(), self.get_mana())
+        return "health : {} , Mana :{}".format(self.get_health(), self.get_mana())
 
     def get_weapon(self):
         return self.__weapon
@@ -248,21 +250,3 @@ class Enemy(Person):
             self.__mana -= self.__spell.get_mana_cost()
             return self.__spell.get_damage()
         return 0
-
-
-# h = Hero(name="Bron", title="Dragonslayer", health=100,
-#          mana=100, mana_regeneration_rate=2)
-
-# print(h.known_as())
-# print(h.is_alive())
-# print(h.get_health())
-# print(h.get_mana())
-# h.take_damage(50)
-# print(h.get_health())
-# h.take_damage(100)
-# print(h.get_health())
-# print(h.is_alive())
-# h.set_mana(50)
-# h.move_hero("left")
-# h.move_hero("right")
-# print(h.get_mana())
