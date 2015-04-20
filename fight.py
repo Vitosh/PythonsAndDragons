@@ -13,14 +13,19 @@ class Fight:
         if by == "weapon":
             self.enemy.set_health(
                 self.enemy.get_health() - self.hero.atack(by="weapon"))
-            return "Enemy health is {}".format(e.get_health())
+            return "Enemy health is {} Enemy is alive : {}".format(self.enemy.get_health(), self.enemy.is_alive())
             # Magic  make  latter
 
-h = Hero(name="rado", title="killer")
-w = Weapon("gun", 50)
-h.set_weapons(w)
-h.equip(w)
-e = Enemy(100, 50, 10)
-print(e.get_health())
-f = Fight(h, e)
-print(f.hero_attack(by="weapon"))
+    @staticmethod
+    def test():
+        h = Hero(name="rado", title="killer")
+        w = Weapon("gun", 10)
+        h.set_weapons(w)
+        h.equip(w)
+        e = Enemy(100, 50, 10)
+        print(e.get_health())
+        f = Fight(h, e)
+        print(f.hero_attack(by="weapon"))
+
+if __name__ == '__main__':
+    Fight.test()
