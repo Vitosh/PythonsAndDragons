@@ -244,6 +244,7 @@ class Enemy(Person):
             if by == "weapon":
                 return self.__weapon.get_damage()
             elif by == "magic" and self.__mana >= self.__spell.get_mana_cost():
+                self.__mana -= self.__spell.get_mana_cost()
                 return self.__spell.get_damage()
             return 0
 
