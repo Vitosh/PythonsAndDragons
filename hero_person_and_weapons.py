@@ -38,10 +38,6 @@ class Person:
         self.set_health(bloodToBeAdded)
         return True
 
-    # TODO  by -> string
-    def atack(self, by):
-        return by.get_damage()
-
 
 class Hero(Person):
 
@@ -57,8 +53,8 @@ class Hero(Person):
         self.__spells = set()
         self.__weapons = set()
 
-        self.__current_weapon = None
-        self.__current_spell = None
+        self.__current_weapon = 0
+        self.__current_spell = 0
         self.__maximumHealth = health
         self.__maximumMana = mana
         self.__heroSign = "H"
@@ -143,6 +139,16 @@ class Hero(Person):
     def move_hero(self, direction):
         self.take_mana(self.get_mana_regeneration_rate())
 
+    def atack(self, by):
+        if by == "weapon" and self.get_current_weapon() != 0:
+            return self.get_current_weapon().damage()
+        elif by == "magic" and self.get_current_weapon != 0:
+            if self.get_mana() >= self.get_current_spell().get_mana_cost():
+                self.__mana -= self.get_current_spell().get_mana_cost()
+                return self.get_current_spell().damage()
+        else:
+            return 0
+
         if (direction == "up"):
             pass
         elif (direction == "down"):
@@ -211,6 +217,35 @@ class Spell:
 
     def get_cast_range(self):
         return self.__cast_range
+
+
+class Enemy(Person):
+
+    def __init__(self, health, mana, damage):
+        super().__init__(health, mana)
+        self.__damage = damage
+        self.__weapon = 0
+        self.__spell = 0
+        self.__mana = super().get_mana()
+
+        def equip(self, weapon):
+            if isinstance(weapon, Weapon):
+                self.__weapon = weapon
+            # raise ->weapon Error
+
+        def learn(self, spell):
+            if isinstance(spell, Spell):
+                self.__spell = spell
+            # raise ->spell Error
+
+        def atack(self, by=False):
+            if not by:
+                return self.__damage
+            if by == "weapon":
+                return self.__weapon.get_damage()
+            elif by == "magic" and self.__mana >= self.__spell.get_mana_cost():
+                return self.__spell.get_damage()
+            return 0
 
 
 # h = Hero(name="Bron", title="Dragonslayer", health=100,
