@@ -32,7 +32,7 @@ def find_element_in_matrix(matrix, element):
     return False
 
 
-def find_all_coordinate(matrix, sign):
+def find_all_coordinates(matrix, sign):
     coordinate = []
     row_count = -1
     for row in matrix:
@@ -71,8 +71,8 @@ def matrix_view(matrix):
 
 def main():
     matrix = file_to_matrix("Map.txt")
-    print(find_all_coordinate(matrix, "E"))
-    print(find_all_coordinate(matrix, "T"))
+    print(find_all_coordinates(matrix, "E"))
+    print(find_all_coordinates(matrix, "T"))
     print(matrix_view(matrix))
     position = move_in_matrix(matrix, (2, 5), "up")
     print(matrix_view(matrix))
