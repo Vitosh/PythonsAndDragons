@@ -6,8 +6,6 @@ DIRECTIONS = {
 }
 OBSTACLE = "#"
 WALCABLE_PATH = "."
-TREASURE = "T"
-ENEMY = "E"
 
 
 def file_to_matrix(path):
@@ -34,26 +32,16 @@ def find_element_in_matrix(matrix, element):
     return False
 
 
-def all_treasure_coordinate_in_matrix(matrix):
+def find_all_coordinate(matrix, sign):
     coordinate = []
     row_count = -1
     for row in matrix:
         row_count += 1
         for i in range(len(row)):
-            if row[i] == TREASURE:
+            if row[i] == sign:
                 coordinate.append((row_count, i))
     return coordinate
 
-
-def all_enemy_coordinate_in_matrix(matrix):
-    coordinate = []
-    row_count = -1
-    for row in matrix:
-        row_count += 1
-        for i in range(len(row)):
-            if row[i] == ENEMY:
-                coordinate.append((row_count, i))
-    return coordinate
 
 # Take matrix, element coordinate, and direction
 
@@ -83,8 +71,8 @@ def matrix_view(matrix):
 
 def main():
     matrix = file_to_matrix("Map.txt")
-    print(all_enemy_coordinate_in_matrix(matrix))
-    print(all_treasure_coordinate_in_matrix(matrix))
+    print(find_all_coordinate(matrix, "E"))
+    print(find_all_coordinate(matrix, "T"))
     print(matrix_view(matrix))
     position = move_in_matrix(matrix, (2, 5), "up")
     print(matrix_view(matrix))
