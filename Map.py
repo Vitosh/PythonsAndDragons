@@ -174,6 +174,7 @@ class Map():  # inherits Fight
         e = Enemy(100, 50, 10)
         NewMap = Map(h, e)
         NewMap.loadMap()
+        print(NewMap.show_list_map())
         print(NewMap.move_hero_on_map("right"))
         print(NewMap.show_line_map())
         print(NewMap.move_hero_on_map("right"))

@@ -84,6 +84,7 @@ class Fight:
         f = Fight(h, e)
         print(f.hero_attack(by="weapon"))
         print(f.hero_attack(by="magic"))
+        print(h.get_mana())
 
 if __name__ == '__main__':
     Fight.test()
