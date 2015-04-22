@@ -97,7 +97,7 @@ class Dungeon:
 
     # I will write after Tresure class is done
     def add_treasure_in_hero(self):
-        if self.__is_treasure_found:
+        if self.is_treasure_found():
             pass
         pass
 
