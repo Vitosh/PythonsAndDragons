@@ -12,31 +12,33 @@ NEGHBORS = [(-1, 0), (1, 0), (0, -1), (0, 1)]
 
 class Dungeon:
 
-    # take one hero and list of enemys
+    # take one hero and list of enemies
 
-    def __init__(self, hero, enemys):
-        self.__hero = hero
-        self.__enemys = enemys
-        self.__enemys_coordinate = self.__init_enemy_in_map()
+    def __init__(self, hero, enemies):
         self.__matrix = m.file_to_matrix("Map.txt")
+        self.__hero = hero
+        self.__enemies = enemies
+        self.__enemies_coordinate = self.__init_enemy_in_map()
         self.__fights_l = []
-        self.__all_enemys = []
+        self.__all_enemies = []
         self.__all_treasures = m.find_all_coordinates(self.__matrix, TREASURE)
+        self.__all_gateways = m.find_all_coordinates(self.__matrix, GATEWAY)
 
     def __init_enemy_in_map(self):
-        enemys_d = {}
-        self.__all_enemys = m.find_all_coordinates(self.__matrix, ENEMY)
-        for enemy in self.__enemys:
-            for coordinate in self.__enemys:
-                enemys_d[enemy] = (enemy, coordinate)
-        return enemys_d
+        enemies_d = {}
+        self.__all_enemies = m.find_all_coordinates(self.__matrix, ENEMY)
+        for enemy in self.__enemies:
+            for coordinate in self.__enemies:
+                enemies_d[enemy] = (enemy, coordinate)
+        return enemies_d
 
     def print_map(self):
         print(m.matrix_view(self.__matrix))
 
     def spawn(self):
-        str_map = m.matrix_view(self.__matrix)
-        self.__matrix = str_map.replace(SPAWN, HERO)
+        positon = m.find_element_in_matrix(self.__matrix, SPAWN)
+        x, y = positon
+        self.__matrix[x][y] = HERO
 
     # return tuple with new position hero
     def move_hero(self, direction):
@@ -50,23 +52,28 @@ class Dungeon:
 
     # take enemy object and direction
     def move_enemy(self, enemy, direction):
-        enemy_position = self.__enemys_coordinate[enemy][1]
+        enemy_position = self.__enemies_coordinate[enemy][1]
         new_enemy_position = m.move_in_matrix(
             self.__matrix, enemy_position, direction)
-        self.__enemys_coordinate[enemy] = (enemy, new_enemy_position)
+        self.__enemies_coordinate[enemy] = (enemy, new_enemy_position)
 
     def is_treasure_found(self):
         hero_position = m.find_element_in_matrix(self.__matrix, HERO)
         return hero_position in self.__all_treasures
 
+    # if is True "Player Win"
+    def is_gateway_found(self):
+        hero_position = m.find_element_in_matrix(self.__matrix, HERO)
+        return hero_position in self.__all_gateways
+
     def enemy_found(self):
         self.__fights_l.clear()
         hero_position = m.find_element_in_matrix(self.__matrix, HERO)
-        self.__all_enemys = m.find_all_coordinates(self.__matrix, ENEMY)
+        self.__all_enemies = m.find_all_coordinates(self.__matrix, ENEMY)
         x_h, y_h = hero_position
         for coordinate in NEGHBORS:
             x, y = coordinate
-            if (x_h + x, y_h + y) in self.__all_enemys:
+            if (x_h + x, y_h + y) in self.__all_enemies:
                 self.__fights_l.append((x_h + x, y_h + y))
 
     def view_enemy_to_fight(self):
@@ -82,3 +89,19 @@ class Dungeon:
         if self.__is_treasure_found:
             pass
         pass
+
+
+def main():
+    h = Hero(name="rado", title="killer")
+    w = Weapon("gun", 10)
+    h.set_weapons(w)
+    h.equip(w)
+    e = Enemy(100, 50, 10)
+    map_d = Dungeon(h, [e])
+    map_d.print_map()
+    map_d.spawn()
+    map_d.print_map()
+
+
+if __name__ == '__main__':
+    main()

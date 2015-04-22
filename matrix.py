@@ -66,7 +66,7 @@ def matrix_view(matrix):
     matrix_to_str = "\n".join([str(c) for c in matrix])
     for e in remove_e:
         matrix_to_str = matrix_to_str.replace(e, "")
-    return matrix_to_str + "\n"
+    return matrix_to_str
 
 
 def main():
