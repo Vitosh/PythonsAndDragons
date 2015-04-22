@@ -28,8 +28,8 @@ class Dungeon:
         enemies_d = {}
         self.__all_enemies = m.find_all_coordinates(self.__matrix, ENEMY)
         for enemy in self.__enemies:
-            for coordinate in self.__enemies:
-                enemies_d[enemy] = (enemy, coordinate)
+            for coordinate in self.__all_enemies:
+                enemies_d[coordinate] = (enemy, coordinate)
         return enemies_d
 
     def print_map(self):
@@ -73,8 +73,9 @@ class Dungeon:
         x_h, y_h = hero_position
         for coordinate in NEGHBORS:
             x, y = coordinate
-            if (x_h + x, y_h + y) in self.__all_enemies:
-                self.__fights_l.append((x_h + x, y_h + y))
+            for v in self.__enemies_coordinate.values():
+                if v[1] == (x_h + x, y_h + y):
+                    self.__fights_l.append(v[0])
 
     def view_enemy_to_fight(self):
         return "\n".join(str(enemy) for enemy in self.__fights_l)
@@ -101,6 +102,15 @@ def main():
     map_d.print_map()
     map_d.spawn()
     map_d.print_map()
+    map_d.move_hero("right")
+    map_d.print_map()
+    map_d.move_hero("down")
+    map_d.print_map()
+    map_d.move_hero("right")
+    map_d.print_map()
+    map_d.enemy_found()
+    print(map_d.view_enemy_to_fight())
+    print(map_d.select_enemy_to_fight(e))
 
 
 if __name__ == '__main__':
