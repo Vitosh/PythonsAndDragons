@@ -28,7 +28,7 @@ class Dungeon:
         enemies_d = {}
         added = set()
         self.__all_enemies = m.find_all_coordinates(self.__matrix, ENEMY)
-        #TODO : if self.__enemies < self.__all_enemies random enimies in map
+        # TODO : if self.__enemies < self.__all_enemies random enimies in map
         if len(self.__enemies) == 1:
             for coordinate in self.__all_enemies:
                 enemies_d[coordinate] = (enemy, coordinate)
@@ -60,11 +60,12 @@ class Dungeon:
         return new_hero_position
 
     # take enemy object and direction
-    def move_enemy(self, enemy, direction):
-        enemy_position = self.__enemies_coordinate[enemy][1]
+    def move_enemy(self, s_coordinate, direction):
+        enemy_position = self.__enemies_coordinate[s_coordinate][1]
         new_enemy_position = m.move_in_matrix(
             self.__matrix, enemy_position, direction)
-        self.__enemies_coordinate[enemy] = (enemy, new_enemy_position)
+        self.__enemies_coordinate[s_coordinate] = (
+            s_coordinate, new_enemy_position)
 
     def is_treasure_found(self):
         hero_position = m.find_element_in_matrix(self.__matrix, HERO)
