@@ -26,10 +26,19 @@ class Dungeon:
 
     def __init_enemy_in_map(self):
         enemies_d = {}
+        added = set()
         self.__all_enemies = m.find_all_coordinates(self.__matrix, ENEMY)
-        for enemy in self.__enemies:
+        #TODO : if self.__enemies < self.__all_enemies random enimies in map
+        if len(self.__enemies) == 1:
             for coordinate in self.__all_enemies:
                 enemies_d[coordinate] = (enemy, coordinate)
+        else:
+            for enemy in self.__enemies:
+                for coordinate in self.__all_enemies:
+                    if coordinate not in added:
+                        enemies_d[coordinate] = (enemy, coordinate)
+                        added.add(coordinate)
+                        break
         return enemies_d
 
     def print_map(self):
@@ -98,7 +107,12 @@ def main():
     h.set_weapons(w)
     h.equip(w)
     e = Enemy(100, 50, 10)
-    map_d = Dungeon(h, [e])
+    e2 = Enemy(40, 20, 10)
+    e3 = Enemy(40, 2, 10)
+    e4 = Enemy(40, 2, 10)
+    e5 = Enemy(40, 2, 10)
+    e6 = Enemy(40, 2, 10)
+    map_d = Dungeon(h, [e, e2, e3, e4, e5, e6])
     map_d.print_map()
     map_d.spawn()
     map_d.print_map()
@@ -110,7 +124,7 @@ def main():
     map_d.print_map()
     map_d.enemy_found()
     print(map_d.view_enemy_to_fight())
-    print(map_d.select_enemy_to_fight(e))
+    print(map_d.select_enemy_to_fight(e2))
 
 
 if __name__ == '__main__':
